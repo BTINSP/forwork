@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="container" style="width:100%">
+  <div th:replace="~{Body.html::header}"></div>
+  <div th:replace="~{Body.html::menu}"></div>
+<form th:action="@{/report/update}" th:method="post">
+  <table border="1" cellpadding="10" cellspacing="0" align="center">
+    <tr>
+      <td>
+        <div>
+          科目：
+          <select name="course_id">
+            <optgroup label="科目">
+              <option th:each="course:${courses}" th:text="${course.Name}" th:value="${course.Id}">一年级</option>
+            </optgroup>
+          </select>
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <div>
+          <label >
+            姓名：
+            <select name="student_id">
+              <optgroup label="student_id">
+                <option th:each="student:${students}" th:text="${student.Name}" th:value="${student.Id}">男</option>
+              </optgroup>
+            </select>
+          </label>
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <div>
+          <label>
+            成绩：
+            <input type="text" name="point" required>
+
+          </label>
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <input type="hidden" th:value="${report_id}" name="id">
+        <input type="submit" value="提交">
+
+        <h11 th:if="${msg} != null" th:text="${msg}">123</h11>
+      </td>
+    </tr>
+
+  </table>
+
+</form>
+</div>
+</body>
+</html>

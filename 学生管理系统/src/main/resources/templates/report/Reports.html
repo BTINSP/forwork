@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{Header.html::header}"></div>
+<body>
+<div id="container" style="width:100%">
+    <div th:replace="~{Body.html::header}"></div>
+    <div th:replace="~{Body.html::menu}"></div>
+
+        <table border="1" cellpadding="10" cellspacing="0" align="center">
+            <tr th:replace="~{Body.html::select}"></tr>
+            <tr>
+                <th>姓名</th>
+                <th>科目</th>
+                <th>成绩</th>
+                <th>创建时间</th>
+                <th>修改时间</th>
+                <th>操作</th>
+            </tr>
+
+            <tr th:each="report:${reports}">
+                <td th:each="student:${students}" th:if="${student.Id} == ${report.StudentId} " th:text="${student.Name}">李四</td>
+                <td th:each="course:${courses}" th:if="${course.Id} == ${report.CourseId} " th:text="${course.Name}">李四</td>
+                <td th:text="${report.Point}"></td>
+                <td th:text="${report.CreateTime}">李四</td>
+                <td th:text="${report.UpdateTime}">李四</td>
+
+                <td>
+                    <form th:method="get" th:action="@{/report/edit}">
+                        <input type="hidden" th:value="${report.Id}" name="id">
+                        <input type="submit" value="编辑" >
+                    </form>
+                    <form th:method="post" th:action="@{/report/delete}">
+                        <input type="hidden" th:value="${report.Id}" name="id">
+                        <input type="submit" value="删除" >
+                    </form>
+
+                </td>
+
+            </tr>
+
+        </table>
+</div>
+</body>
+</html>

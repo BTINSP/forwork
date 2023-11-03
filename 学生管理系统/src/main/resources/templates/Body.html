@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+<div th:fragment="header">
+    <div id="header">
+        <h1 style="margin-bottom:0; text-align: center">学生管理系统</h1>
+        <div style="float: right">
+            <a th:href="@{/logout}">
+            <input type="submit" value="退出">
+            </a>
+        </div>
+    </div>
+</div>
+
+<div th:fragment="menu">
+    <div id="menu" style="height:200px;width:100px;float:left;">
+
+        <table border="1" cellpadding="10" cellspacing="0" align="center">
+
+            <tr>
+                <th>
+                    <a th:href="@{/student/all}">
+                    学生管理
+                    </a>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <a th:href="@{/report/all}">
+                    成绩管理
+                    </a>
+                </th>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div th:fragment="select">
+    <form th:action="@{/report/all}" th:method="get">
+    <tr>
+
+        <td colspan="1">
+            <label>
+                <select name="student_id">
+                    <optgroup label="">
+                        <option th:each="student:${students}" th:text="${student.Name}" th:value="${student.Id}">123</option>
+                    </optgroup>
+                </select>
+            </label>
+        </td>
+
+
+
+        <td colspan="1">
+            <label>
+                <select name="course_id">
+                    <optgroup label="">
+                        <option th:each="course:${courses}" th:text="${course.Name}" th:value="${course.Id}">123</option>
+                    </optgroup>
+                </select>
+            </label>
+        </td>
+
+        <td colspan="1">
+            <label>
+
+            </label>
+        </td>
+
+        <td colspan="1">
+            <label>
+
+            </label>
+        </td>
+
+
+        <td colspan="1">
+            <input type="submit" value="查询">
+        </td>
+    </form>
+        <td colspan="1">
+            <a th:href="@{/report/add}"><input type="submit" value="添加"></a>
+        </td>
+    </tr>
+
+</div>
+
+</html>

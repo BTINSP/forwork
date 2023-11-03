@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="container" style="width:100%">
+  <div th:replace="~{Body.html::header}"></div>
+  <div th:replace="~{Body.html::menu}"></div>
+  <table border="1" cellpadding="10" cellspacing="0" align="center">
+
+    <tr>
+      <th colspan="5"></th>
+      <th>
+        <a th:href="@{/student/add}">
+          <input type="submit" value="添加">
+        </a>
+      </th>
+    </tr>
+
+    <tr>
+      <th>姓名</th>
+      <th>性别</th>
+      <th>班级</th>
+      <th>创建时间</th>
+      <th>修改时间</th>
+      <th>操作</th>
+    </tr>
+
+    <tr th:each="student:${students}">
+      <td th:text="${student.Name}">李四</td>
+      <td th:text="${student.Sex}">李四</td>
+      <td th:each="class:${classes}" th:if="${class.Id}==${student.ClassId}" th:text="${class.Name}"></td>
+      <td th:text="${student.CreateTime}">李四</td>
+      <td th:text="${student.UpdateTime}">李四</td>
+
+      <td>
+        <form th:method="get" th:action="@{/student/edit}">
+          <input type="hidden" th:value="${student.Id}" name="id">
+          <input type="submit" value="编辑" >
+        </form>
+        <form th:method="post" th:action="@{/student/delete}">
+          <input type="hidden" th:value="${student.Id}" name="id">
+          <input type="submit" value="删除" >
+        </form>
+
+      </td>
+
+    </tr>
+
+  </table>
+</div>
+</body>
+</html>

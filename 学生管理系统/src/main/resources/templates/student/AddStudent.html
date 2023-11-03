@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="container" style="width:100%">
+  <div th:replace="~{Body.html::header}"></div>
+  <div th:replace="~{Body.html::menu}"></div>
+  <form th:action="@{/student/add}" th:method="post">
+    <table border="1" cellpadding="10" cellspacing="0" align="center">
+      <tr>
+        <td>
+          <div>
+            姓名：
+            <input type="text" name="name" required>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <div>
+            <label >
+              性别：
+              <select name="sex">
+                <optgroup label="性别">
+                  <option value="0">男</option>
+                  <option value="1">女</option>
+                </optgroup>
+              </select>
+            </label>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <div>
+            <label>
+              班级：
+              <select name="classId">
+                <optgroup label="班级">
+                  <option th:each="class:${classes}" th:text="${class.Name}" th:value="${class.Id}">一年级</option>
+                </optgroup>
+              </select>
+            </label>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <input type="submit" value="提交">
+
+          <h11 th:if="${msg} != null" th:text="${msg}">123</h11>
+        </td>
+      </tr>
+
+    </table>
+
+  </form>
+</div>
+</body>
+</html>

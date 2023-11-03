@@ -1,0 +1,13 @@
+spring:
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/forwork?useSSL=false&serverTimezone=UTC
+    username: root
+    password: root
+
+
+server:
+  port: 8083
